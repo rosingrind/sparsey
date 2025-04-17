@@ -5,6 +5,9 @@ mod entity_sparse_set;
 mod entity_storage;
 mod sparse_vec;
 
+#[cfg(feature = "bitcode")]
+use bitcode::{Decode, Encode};
+
 pub use self::sparse_vec::*;
 
 pub(crate) use self::entity_allocator::*;
@@ -18,6 +21,7 @@ use core::num::NonZeroU32;
 /// Uniquely identifies a set of components in a
 /// [`World`](crate::world::World).
 #[cfg_attr(target_pointer_width = "64", repr(align(8)))]
+#[cfg_attr(feature = "bitcode", derive(Decode, Encode))]
 #[derive(Clone, Copy, PartialEq, Eq, Hash)]
 pub struct Entity {
     /// The sparse index of the entity.
@@ -86,6 +90,7 @@ impl fmt::Display for Entity {
 }
 
 /// Version used to distinguish between entities with the same index.
+#[cfg_attr(feature = "bitcode", derive(Decode, Encode))]
 #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Debug)]
 pub struct Version(pub NonZeroU32);
 
