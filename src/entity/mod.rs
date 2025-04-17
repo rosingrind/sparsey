@@ -79,6 +79,12 @@ impl fmt::Debug for Entity {
     }
 }
 
+impl fmt::Display for Entity {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(f, "{}", self.index)
+    }
+}
+
 /// Version used to distinguish between entities with the same index.
 #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Debug)]
 pub struct Version(pub NonZeroU32);
