@@ -187,7 +187,7 @@ where
     }
 
     /// Returns ordered slices of all items that match the query, if the query
-    // is grouped.
+    /// is grouped.
     #[must_use]
     pub fn slice(&mut self) -> Option<G::Slice<'_>> {
         let range = self.get_group_range()?;
