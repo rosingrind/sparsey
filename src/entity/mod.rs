@@ -22,7 +22,7 @@ use core::num::NonZeroU32;
 /// [`World`](crate::world::World).
 #[cfg_attr(target_pointer_width = "64", repr(align(8)))]
 #[cfg_attr(feature = "bitcode", derive(Decode, Encode))]
-#[derive(Clone, Copy, PartialEq, Eq, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, Default)]
 pub struct Entity {
     /// The sparse index of the entity.
     pub index: u32,
